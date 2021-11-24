@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">AstronomyExercise</string>
+    <string name="app_name">Astronomy Picture</string>
+    <string name="dialog_header">No Internet</string>
+    <string name="dialog_description">Not connected to the internet, Please Enable Internet Connection</string>
 </resources>
