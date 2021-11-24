@@ -37,11 +37,14 @@ class MainActivity : AppCompatActivity() {
                 binding.ivImage.visibility = View.VISIBLE
             }
         })
+        /*After successful api response setting values*/
         viewModel.nasaSuccess.observe(this, { response ->
             binding.tvHeader.text = response.data?.title
             binding.tvDescription.text = response.data?.explanation
             Glide.with(this).load(response.data?.url).into(binding.ivImage)
         })
+        /*Checking if any data exists if it is there making an api call else fetching it from db*/
+        //TODO save date from response and check for current date and display accordingly
         viewModel.allUsers.observe(this, { usersList ->
             if (usersList.isNullOrEmpty()) {
                 viewModel.callApi()
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 setUi(usersList[0])
             }
         })
+        /*For api errors*/
         viewModel.nasaError.observe(this, {
             showAlertDialog()
         })
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUi(item: NasaItem) {
-        if(!item.name.isNullOrEmpty()) {
+        if (!item.name.isNullOrEmpty()) {
             binding.tvHeader.visibility = View.VISIBLE
             binding.tvDescription.visibility = View.VISIBLE
             binding.ivImage.visibility = View.VISIBLE
